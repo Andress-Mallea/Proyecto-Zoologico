@@ -22,6 +22,7 @@ def fetch_data_from_sql_server(cursor, table):
     cursor.execute(f"SELECT * FROM {table}")
     columns = [column[0] for column in cursor.description]
     columns = [col.replace('.', '') for col in columns]
+    columns = [col.replace(' ', '') for col in columns]
     data = cursor.fetchall()
     return columns, data
 def create_mysql_table(mysql_cursor, table_name, columns):
